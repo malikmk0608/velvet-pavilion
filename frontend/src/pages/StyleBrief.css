@@ -1,0 +1,172 @@
+.style-hero {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8rem 6vw 4rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.style-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(11,11,13,0.85) 0%, rgba(11,11,13,0.5) 45%, rgba(11,11,13,0.75) 100%);
+}
+
+.style-hero-title {
+  position: relative;
+  z-index: 2;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  color: var(--color-text);
+  margin-bottom: 3rem;
+  max-width: 700px;
+  opacity: 0;
+  transform: translateX(-60px);
+  animation: slideInLeft 0.7s ease-out forwards;
+}
+
+@keyframes slideInLeft {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.style-hero-intro {
+  position: relative;
+  z-index: 2;
+  font-size: 0.98rem;
+  color: var(--color-text-muted);
+  max-width: 520px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.style-cards {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+
+.style-cards:hover {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gold) transparent;
+}
+
+.style-cards::-webkit-scrollbar {
+  height: 6px;
+}
+
+.style-cards::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 999px;
+}
+
+.style-cards:hover::-webkit-scrollbar-thumb {
+  background: rgba(201, 162, 39, 0.4);
+}
+
+.style-cards::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ── card ── */
+.style-card {
+  position: relative;
+  flex: 0 0 220px;
+  width: 220px;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  border: 1px solid rgba(237, 230, 218, 0.08);
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  background: none;
+  opacity: 0;
+  transform: translateX(60px);
+  animation: slideInRight 0.6s ease-out forwards;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+  scroll-snap-align: start;
+}
+
+.style-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201, 162, 39, 0.3);
+}
+
+@keyframes slideInRight {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* image fills the card */
+.style-card-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* text area pinned to bottom */
+.style-card-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.2rem;
+  background: linear-gradient(180deg, transparent, rgba(10,9,8,0.9) 65%);
+  z-index: 2;
+}
+
+.style-card-text h3 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #FFFFFF;
+  margin-bottom: 0.3rem;
+  opacity: 1;
+}
+
+.style-card-text p {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  line-height: 1.45;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  margin-top: 0;
+  transition: opacity 0.25s ease, max-height 0.25s ease, margin-top 0.25s ease;
+}
+
+.style-card:hover .style-card-text p {
+  opacity: 1;
+  max-height: 80px;
+  margin-top: 0.35rem;
+}
+
+@media (max-width: 900px) {
+  .style-cards {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .style-cards {
+    width: 100%;
+  }
+
+  .style-hero {
+    padding: 7rem 6vw 3rem;
+  }
+}

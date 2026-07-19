@@ -1,0 +1,151 @@
+.genre-page {
+  min-height: 100vh;
+  width: 100%;
+  padding: 10rem 6vw 6rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.genre-header {
+  margin-bottom: 3.5rem;
+}
+
+.genre-eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 0.6rem;
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: slideInLeftGenre 0.6s ease-out forwards;
+}
+
+.genre-title {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  color: var(--color-text);
+  opacity: 0;
+  transform: translateX(-60px);
+  animation: slideInLeftGenre 0.7s ease-out 0.15s forwards;
+}
+
+@keyframes slideInLeftGenre {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.genre-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.genre-block {
+  position: relative;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  cursor: pointer;
+  text-align: left;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: transform 0.25s ease;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slideUpGenre 0.6s ease-out forwards;
+  background: #171311;
+}
+
+@keyframes slideUpGenre {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.genre-block:hover {
+  transform: translateY(-4px);
+}
+
+.genre-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+.genre-block::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.65) 100%);
+}
+
+.genre-name,
+.genre-desc {
+  position: relative;
+  z-index: 2;
+}
+
+.genre-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+}
+
+.genre-desc {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.5;
+  max-width: 90%;
+}
+
+.genre-action { background: linear-gradient(155deg, #A8421F 0%, #5C1E0D 100%); }
+.genre-drama { background: linear-gradient(155deg, #3A4A7C 0%, #1D2540 100%); }
+.genre-comedy { background: linear-gradient(155deg, #D9A82E 0%, #8A6A15 100%); }
+.genre-horror { background: linear-gradient(155deg, #3A1015 0%, #150608 100%); }
+.genre-thriller { background: linear-gradient(155deg, #14514E 0%, #0A2624 100%); }
+.genre-historical { background: linear-gradient(155deg, #8A5A2E 0%, #4A2E14 100%); }
+.genre-romance { background: linear-gradient(155deg, #8A3555 0%, #4A1A2C 100%); }
+.genre-scifi { background: linear-gradient(155deg, #5A2E8A 0%, #251140 100%); }
+
+.genre-block-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.7;
+  transition: opacity 0.3s ease, transform 0.4s ease;
+}
+
+.genre-block:hover .genre-block-img {
+  opacity: 0.85;
+  transform: scale(1.04);
+}
+
+@media (max-width: 700px) {
+  .genre-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .genre-page {
+    padding: 8rem 6vw 4rem;
+  }
+}

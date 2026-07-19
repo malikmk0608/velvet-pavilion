@@ -1,0 +1,309 @@
+/* ── Floating Action Button ── */
+.ai-fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: linear-gradient(135deg, #5C1A21, #3A1015);
+  color: var(--color-gold);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  box-shadow: 0 4px 24px rgba(92, 26, 33, 0.5), 0 0 60px rgba(201, 162, 39, 0.08);
+  transition: all 0.3s ease;
+}
+
+.ai-fab:hover {
+  transform: scale(1.08);
+  border-color: var(--color-gold);
+  box-shadow: 0 6px 32px rgba(92, 26, 33, 0.6), 0 0 80px rgba(201, 162, 39, 0.15);
+}
+
+.ai-fab.active {
+  background: #171311;
+  border-color: rgba(237, 230, 218, 0.2);
+  color: var(--color-text-muted);
+}
+
+/* ── Panel ── */
+.ai-panel {
+  position: fixed;
+  bottom: 6rem;
+  right: 2rem;
+  width: 400px;
+  max-height: 580px;
+  background: #0E0C0A;
+  border: 1px solid rgba(201, 162, 39, 0.15);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  z-index: 99;
+  box-shadow: 0 12px 64px rgba(0,0,0,0.6), 0 0 120px rgba(92, 26, 33, 0.1);
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.ai-panel.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* ── Header ── */
+.ai-panel-header {
+  padding: 1rem 1.2rem 0.75rem;
+  border-bottom: 1px solid rgba(237, 230, 218, 0.08);
+}
+
+.ai-panel-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.ai-panel-brand span {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--color-text);
+}
+
+.ai-mode-tabs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ai-mode-tab {
+  flex: 1;
+  padding: 0.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border: 1px solid rgba(237, 230, 218, 0.1);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ai-mode-tab:hover {
+  border-color: rgba(201, 162, 39, 0.3);
+  color: var(--color-text);
+}
+
+.ai-mode-tab.active {
+  background: rgba(201, 162, 39, 0.1);
+  border-color: rgba(201, 162, 39, 0.35);
+  color: var(--color-gold);
+}
+
+/* ── Messages ── */
+.ai-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201, 162, 39, 0.2) transparent;
+  min-height: 280px;
+}
+
+.ai-welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  gap: 0.8rem;
+}
+
+.ai-welcome-title {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+.ai-welcome-sub {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.ai-suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.ai-suggestions button {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  color: var(--color-gold);
+  background: rgba(201, 162, 39, 0.06);
+  border: 1px solid rgba(201, 162, 39, 0.15);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.ai-suggestions button:hover {
+  background: rgba(201, 162, 39, 0.12);
+  border-color: rgba(201, 162, 39, 0.35);
+}
+
+.ai-msg {
+  position: relative;
+  max-width: 92%;
+  padding: 0.7rem 0.9rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.ai-msg.user {
+  background: var(--color-velvet);
+  color: var(--color-text);
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.ai-msg.ai {
+  background: #171311;
+  color: var(--color-text);
+  border: 1px solid rgba(237, 230, 218, 0.08);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+.ai-msg-content {
+  white-space: pre-wrap;
+}
+
+.ai-save-btn {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 0.2rem;
+  opacity: 0;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+}
+
+.ai-msg:hover .ai-save-btn {
+  opacity: 1;
+}
+
+.ai-save-btn:hover {
+  color: var(--color-gold);
+  background: rgba(201, 162, 39, 0.1);
+}
+
+/* ── Input ── */
+.ai-input-row {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid rgba(237, 230, 218, 0.08);
+}
+
+.ai-input {
+  flex: 1;
+  background: #171311;
+  border: 1px solid rgba(237, 230, 218, 0.12);
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
+  color: var(--color-text);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  outline: none;
+}
+
+.ai-input::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.5;
+}
+
+.ai-input:focus {
+  border-color: rgba(201, 162, 39, 0.4);
+}
+
+.ai-send {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-velvet);
+  color: var(--color-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.ai-send:hover {
+  background: #712028;
+}
+
+.ai-send:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ai-send-loading {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(237, 230, 218, 0.3);
+  border-top-color: var(--color-gold);
+  border-radius: 50%;
+  animation: aiSpin 0.6s linear infinite;
+}
+
+@keyframes aiSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 500px) {
+  .ai-panel {
+    right: 0.75rem;
+    left: 0.75rem;
+    width: auto;
+    bottom: 5rem;
+    max-height: 70vh;
+  }
+
+  .ai-fab {
+    bottom: 1.25rem;
+    right: 1.25rem;
+    width: 50px;
+    height: 50px;
+  }
+}
