@@ -1,13 +1,11 @@
 import os
 from dotenv import load_dotenv
 from google import genai
-from google.genai import errors
 
 load_dotenv()
 
 client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 MODEL = "gemini-flash-latest"
-
 
 def stream_gemini_response(prompt: str):
     try:
@@ -18,7 +16,5 @@ def stream_gemini_response(prompt: str):
         for chunk in response_stream:
             if chunk.text:
                 yield chunk.text
-    except errors.ServerError:
-        yield "\n\n[The AI service is temporarily busy. Please try again in a moment.]"
-    except errors.ClientError as e:
-        yield f"\n\n[Something went wrong: {str(e)}]"
+    except Exception as e:
+        yield f"\n\n[SYSTEM ERROR]: {type(e).__name__} - {str(e)}"
